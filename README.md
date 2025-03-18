@@ -10,7 +10,7 @@ Explore and categorize content based on specific criteria and keywords.
 
 1. Count the number of Movies vs TV ShowsSELECT type,
 COUNT(*) as content from netflix
-group by type
+group by type;
 
 2. Find the most common rating for movies and TV shows
 select type,
@@ -29,7 +29,7 @@ ranking = 1;
 select * from netflix
 where type='Movie'
 and
-release_year=2020
+release_year=2020;
 
 4.Find the top 5 countries with the most content on Netflix
 Select
@@ -44,7 +44,7 @@ select * from netflix
 where
 type='Movie'
 AND
-duration=(select max(duration) from netflix)
+duration=(select max(duration) from netflix);
 
 6.Find content added in the last 5 years
 select * from netflix
@@ -62,14 +62,14 @@ select * from netflix
 where
 type='TV Show'
 AND
-split_part(duration,' ',1)::numeric > 5
+split_part(duration,' ',1)::numeric > 5;
 
 9.Count the number of content items in each genre
 select unnest(string_to_array(listed_in,',')) as genre,
 count(show_id) as total_content from netflix
 group by 1
 order by 2 DESC
-limit 5
+limit 5;
 
 10.Find each year and the average numbers of content release by India on netflix. Return top 5 year with highest avg content release !
 select
@@ -79,17 +79,17 @@ Round(count(*):: numeric/(select count(*) from netflix where country='India'):: 
 ,2) as avg_content
 from netflix
 where country='India'
-group by 1
+group by 1;
 
 11.List all movies that are documentaries
 select * from netflix
 where
-listed_in ilike '%documentaries%'
+listed_in ilike '%documentaries%';
 
 12.Find all content without a director
 select * from netflix
 where
-director is null
+director is null;
 
 13.Find how many movies actor 'Salman Khan' appeared in last 10 years!
 select * from netflix
@@ -105,4 +105,4 @@ from netflix
 where country ilike '%india'
 group by 1
 order by 2 desc
-limit 10
+limit 10;
